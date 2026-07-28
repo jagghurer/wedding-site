@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Павел & Марина — 01.10.2026</title>
+    <meta name="description" content="Приглашение на свадьбу Павла и Марины" />
+    <meta property="og:title" content="Павел & Марина" />
+    <meta property="og:description" content="1 октября 2026" />
+    <meta property="og:image" content="../photos/hero.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- Hero с видео -->
+      <header class="hero">
+        <div class="hero-video-wrapper">
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            class="hero-video"
+            poster="../photos/hero.jpg"
+          >
+            <source src="../photos/wedding-video.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="overline">свадебное приглашение</p>
+          <h1 class="names">Павел <span>&</span> Марина</h1>
+          <p class="date">1 октября 2026</p>
+          <div id="guestWelcome" class="guest-name"></div>
+          <p id="heroInvitation" class="hero-invite"></p>
+          <a href="#rsvp" class="btn btn-primary" id="rsvpLink"
+            >Подтвердить участие</a
+          >
+        </div>
+      </header>
+
+      <main>
+        <!-- Счётчик -->
+        <section class="section countdown">
+          <div class="container">
+            <p class="overline">До свадьбы осталось</p>
+            <div class="countdown-grid">
+              <div class="count-item">
+                <span id="days">0</span><small>дней</small>
+              </div>
+              <div class="count-item">
+                <span id="hours">0</span><small>часов</small>
+              </div>
+              <div class="count-item">
+                <span id="minutes">0</span><small>минут</small>
+              </div>
+              <div class="count-item">
+                <span id="seconds">0</span><small>секунд</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Календарь -->
+        <section class="section calendar-section">
+          <div class="container">
+            <p class="overline">День, когда мы станем семьёй</p>
+            <h2>Октябрь 2026</h2>
+            <div class="calendar">
+              <div class="calendar-header">
+                <span>пн</span><span>вт</span><span>ср</span><span>чт</span
+                ><span>пт</span><span>сб</span><span>вс</span>
+              </div>
+              <div class="calendar-grid">
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day highlighted">1</div>
+                <div class="calendar-day">2</div>
+                <div class="calendar-day">3</div>
+                <div class="calendar-day">4</div>
+                <div class="calendar-day">5</div>
+                <div class="calendar-day">6</div>
+                <div class="calendar-day">7</div>
+                <div class="calendar-day">8</div>
+                <div class="calendar-day">9</div>
+                <div class="calendar-day">10</div>
+                <div class="calendar-day">11</div>
+                <div class="calendar-day">12</div>
+                <div class="calendar-day">13</div>
+                <div class="calendar-day">14</div>
+                <div class="calendar-day">15</div>
+                <div class="calendar-day">16</div>
+                <div class="calendar-day">17</div>
+                <div class="calendar-day">18</div>
+                <div class="calendar-day">19</div>
+                <div class="calendar-day">20</div>
+                <div class="calendar-day">21</div>
+                <div class="calendar-day">22</div>
+                <div class="calendar-day">23</div>
+                <div class="calendar-day">24</div>
+                <div class="calendar-day">25</div>
+                <div class="calendar-day">26</div>
+                <div class="calendar-day">27</div>
+                <div class="calendar-day">28</div>
+                <div class="calendar-day">29</div>
+                <div class="calendar-day">30</div>
+                <div class="calendar-day">31</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Детали свадьбы -->
+        <section class="section details">
+          <div class="container">
+            <p class="overline">Свадьба</p>
+            <h2>Мы ждём вас</h2>
+            <div class="details-grid">
+              <div class="detail">
+                <p class="detail-label">Время</p>
+                <p class="detail-value">Сбор гостей в 15:30</p>
+                <p class="detail-address">Начало регистрации в 16:00</p>
+              </div>
+              <div class="detail">
+                <p class="detail-label">Место</p>
+                <p class="detail-value">Второй дворец бракосочетания</p>
+                <p class="detail-address">Фурштатская ул., 52</p>
+              </div>
+            </div>
+            <p
+              class="timing-note"
+              style="
+                max-width: 600px;
+                margin: 20px auto 0;
+                color: var(--muted);
+                font-size: 15px;
+              "
+            >
+              Просим прийти немного заранее, чтобы всё успеть и не торопиться.
+            </p>
+          </div>
+        </section>
+
+        <!-- Программа дня -->
+        <section class="section schedule">
+          <div class="container">
+            <p class="overline">Программа дня</p>
+            <h2>Как пройдёт наш праздник</h2>
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="time">16:00</div>
+                <div>
+                  <h3>Церемония</h3>
+                  <p>Трогательная роспись в кругу близких</p>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="time">17:00</div>
+                <div>
+                  <h3>Банкет</h3>
+                  <p>Праздничный ужин и тёплые тосты</p>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="time">21:00</div>
+                <div>
+                  <h3>Торт</h3>
+                  <p>Сладкий финал вечера</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Дресс-код -->
+        <section class="section dresscode">
+          <div class="container">
+            <p class="overline">Дресс-код</p>
+            <h2>Пожалуйста, избегайте</h2>
+            <p class="dress-subtitle">
+              Мы будем рады видеть вас в нарядах в спокойной и элегантной гамме.
+              Пожалуйста, воздержитесь от белого и светлых оттенков, красного,
+              а также слишком ярких и ядовитых цветов.
+            </p>
+           
+          </div>
+        </section>
+
+        <!-- Пожелания -->
+        <section class="section gifts">
+          <div class="container">
+            <p class="overline">Пожелания</p>
+            <h2>Лучший подарок — ваше присутствие</h2>
+            <p class="gifts-text">
+              Если вы захотите порадовать нас ещё и подарком, мы будем
+              благодарны за вклад в наше свадебное путешествие.
+            </p>
+          </div>
+        </section>
+
+        <!-- Локация -->
+        <section class="section location">
+          <div class="map-wrapper">
+            <div class="map-container">
+              <iframe
+                title="Карта места проведения"
+                src="https://yandex.com/map-widget/v1/org/dvorets_trezini/1161661043/?ll=30.288212%2C59.936986&z=16"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                allowfullscreen="true"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+              <a
+                class="map-link"
+                href="https://yandex.com/maps/-/CTr6eLzB"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Открыть в Яндекс Картах
+              </a>
+            </div>
+          </div>
+          <div class="container">
+            <p class="map-address">
+              Дворец Трезини · Университетская набережная, 21В · Санкт‑Петербург
+            </p>
+          </div>
+        </section>
+
+        <!-- RSVP -->
+        <section id="rsvp" class="section rsvp">
+          <div class="container">
+            <p class="overline">RSVP</p>
+            <h2>Подтвердите участие</h2>
+            <p class="rsvp-deadline">
+              Пожалуйста, ответьте до 15 августа 2026 года
+            </p>
+            <p id="guestGreeting" class="guest-greeting"></p>
+            <form id="rsvpForm" class="rsvp-form">
+              <input type="text" name="website" class="honeypot" />
+              <input type="hidden" name="name" id="guestNameInput" value="" />
+
+              <div class="form-group">
+                <label>Подтвердите присутствие</label>
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="attending"
+                      value="обязательно буду"
+                      checked
+                    /><span class="radio"></span> Обязательно буду</label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="attending"
+                      value="к сожалению, не смогу"
+                    /><span class="radio"></span> К сожалению, не смогу</label
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Будете ли вы на церемонии или только на банкете?</label>
+                <select name="ceremony">
+                  <option>Буду на церемонии</option>
+                  <option>Приду только на банкет</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Нужен ли вам трансфер?</label>
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="transfer"
+                      value="от загса до ресторана"
+                    /><span class="radio"></span> От загса до
+                    ресторана</label
+                  >
+                  <label
+                    ><input type="radio" name="transfer" value="нет" checked /><span
+                      class="radio"
+                    ></span>
+                    Нет</label
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Аллергии</label>
+                <select name="allergy" id="allergySelect">
+                  <option>Нет</option>
+                  <option>Есть (комментарий)</option>
+                </select>
+              </div>
+              <div
+                class="form-group"
+                id="allergyCommentField"
+                style="display: none"
+              >
+                <input
+                  type="text"
+                  name="allergy_comment"
+                  placeholder="Опишите ваши пожелания"
+                />
+              </div>
+              <div class="form-group">
+                <label>Предпочтения по алкоголю</label>
+                <div class="checkbox-group" data-none-value="не пью">
+                  <label
+                    ><input type="checkbox" name="alcohol" value="вино" /><span
+                      class="checkbox"
+                    ></span>
+                    Вино</label
+                  >
+                  <label
+                    ><input type="checkbox" name="alcohol" value="шампанское" /><span
+                      class="checkbox"
+                    ></span>
+                    Шампанское</label
+                  >
+                  <label
+                    ><input type="checkbox" name="alcohol" value="водка" /><span
+                      class="checkbox"
+                    ></span>
+                    Водка</label
+                  >
+                  <label
+                    ><input type="checkbox" name="alcohol" value="не пью" /><span
+                      class="checkbox"
+                    ></span>
+                    Не пью</label
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Предпочтения по безалкогольным напиткам</label>
+                <div class="checkbox-group" data-none-value="нет предпочтений">
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="soft_drinks"
+                      value="соки"
+                    /><span class="checkbox"></span> Соки</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="soft_drinks"
+                      value="кола zero"
+                    /><span class="checkbox"></span> Кола Zero</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="soft_drinks"
+                      value="морс"
+                    /><span class="checkbox"></span> Морс</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="soft_drinks"
+                      value="вода"
+                    /><span class="checkbox"></span> Вода</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="soft_drinks"
+                      value="нет предпочтений"
+                    /><span class="checkbox"></span> Нет предпочтений</label
+                  >
+                </div>
+                <input
+                  type="text"
+                  name="soft_drinks_comment"
+                  placeholder="Другой напиток"
+                  class="soft-drink-input"
+                />
+              </div>
+              <div class="form-group">
+                <label>Горячее блюдо</label>
+                <select name="main_dish">
+                  <option>Курица</option>
+                  <option>Рыба</option>
+                  <option>Нет предпочтений</option>
+                </select>
+              </div>
+              <p class="form-note">
+                Если остались какие-то вопросы, напишите или позвоните жениху или
+                невесте, чтобы это обсудить.
+              </p>
+              <button type="submit" class="btn btn-primary submit-btn">
+                Отправить ответ
+              </button>
+            </form>
+            <div id="successMessage" class="success-message"></div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="monogram">M & P</div>
+        <p>Павел & Марина</p>
+        <small>1 октября 2026</small>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
