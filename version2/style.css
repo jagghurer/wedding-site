@@ -40,6 +40,45 @@ a {
   padding: 0 24px;
 }
 
+/* ========== ЛОАДЕР ========== */
+#weddingLoader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #faf8f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+  font-family: "Playfair Display", serif;
+}
+#weddingLoader .spinner {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #d4c5b9;
+  border-top: 2px solid #8b7d6b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+#weddingLoader p {
+  color: #8b7d6b;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+body.loading .page {
+  visibility: hidden;
+}
+
+/* ========== ОСНОВНОЕ ========== */
 .section {
   min-height: auto;
   display: flex;
@@ -680,7 +719,7 @@ footer small {
   }
   .location {
     padding: 80px 0 !important;
-    display: block; /* убираем флекс, чтобы работали стандартные отступы */
+    display: block;
   }
   .map-container {
     height: 80vh;

@@ -27,6 +27,8 @@ function updateCountdown() {
   minutesEl.textContent = Math.floor((diff / (1000 * 60)) % 60);
   secondsEl.textContent = Math.floor((diff / 1000) % 60);
 }
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 // Дефолтный гость
 const defaultGuest = {
@@ -36,73 +38,40 @@ const defaultGuest = {
   heroText: "Мы приглашаем вас разделить с нами этот особенный день.",
 };
 
-// Создаём загрузочный экран
-const loaderHTML = `
-  <div id="weddingLoader" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #faf8f5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease;
-    font-family: 'Cormorant Garamond', serif;
-  ">
-    <div style="
-      width: 50px;
-      height: 50px;
-      border: 2px solid #d4c5b9;
-      border-top: 2px solid #8b7d6b;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    "></div>
-    <p style="color: #8b7d6b; font-size: 18px; letter-spacing: 2px;">Загрузка...</p>
-    <style>
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    </style>
-  </div>
-`;
-
-document.body.insertAdjacentHTML("afterbegin", loaderHTML);
-
-// Скрываем весь контент пока грузится
-const mainContent = document.querySelector(".container") || document.body.children;
-// Добавляем класс для скрытия
-document.documentElement.style.visibility = "hidden";
-
-const loader = document.getElementById("weddingLoader");
-
+// Скрываем лоадер и показываем сайт
 function hideLoader() {
+  const loader = document.getElementById("weddingLoader");
   if (loader) {
     loader.style.opacity = "0";
     setTimeout(() => {
       loader.remove();
-      document.documentElement.style.visibility = "visible";
+      document.body.classList.remove("loading");
     }, 500);
   }
 }
 
-// Если нет гостя в URL — сразу показываем
-const params = new URLSearchParams(window.location.search);
-const guestId = params.get("guest") || "";
-
-if (!guestId) {
-  window._guestData = defaultGuest;
-  hideLoader();
+// Применяем данные гостя
+function applyGuestData(guestData) {
+  const welcome = document.getElementById("guestWelcome");
+  const heroInvitation = document.getElementById("heroInvitation");
+  const guestNameInput = document.getElementById("guestNameInput");
+  
+  if (welcome) welcome.textContent = guestData.greeting;
+  if (heroInvitation) heroInvitation.textContent = guestData.heroText;
+  if (guestNameInput) guestNameInput.value = guestData.formName;
 }
 
 // Загружаем данные гостя
+const params = new URLSearchParams(window.location.search);
+const guestId = params.get("guest") || "";
+
 async function loadGuestData() {
-  if (!guestId) return;
+  if (!guestId) {
+    window._guestData = defaultGuest;
+    applyGuestData(defaultGuest);
+    hideLoader();
+    return;
+  }
 
   try {
     const response = await fetch(`${SCRIPT_URL}?guest=${encodeURIComponent(guestId)}`);
@@ -117,30 +86,13 @@ async function loadGuestData() {
     window._guestData = defaultGuest;
   }
   
-  // Применяем данные
   applyGuestData(window._guestData);
-  // Показываем сайт
   hideLoader();
 }
 
-function applyGuestData(guestData) {
-  const welcome = document.getElementById("guestWelcome");
-  const heroInvitation = document.getElementById("heroInvitation");
-  const guestNameInput = document.getElementById("guestNameInput");
-  
-  if (welcome) welcome.textContent = guestData.greeting;
-  if (heroInvitation) heroInvitation.textContent = guestData.heroText;
-  if (guestNameInput) guestNameInput.value = guestData.formName;
-}
-
-// Запускаем загрузку
 loadGuestData();
 
-// Таймер запускаем сразу
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-// Анимации для всех секций, кроме RSVP
+// Анимации
 setTimeout(() => {
   const sections = document.querySelectorAll(".section:not(.rsvp)");
   if (sections.length) {
@@ -156,9 +108,9 @@ setTimeout(() => {
     );
     sections.forEach((section) => observer.observe(section));
   }
-}, 100);
+}, 200);
 
-// Плавный скролл к опроснику
+// Плавный скролл
 setTimeout(() => {
   const rsvpLink = document.getElementById("rsvpLink");
   if (rsvpLink) {
@@ -170,7 +122,6 @@ setTimeout(() => {
       const html = document.documentElement;
       const oldScrollSnap = html.style.scrollSnapType;
       html.style.scrollSnapType = "none";
-
       target.scrollIntoView({ behavior: "smooth" });
 
       setTimeout(() => {
@@ -187,42 +138,11 @@ setTimeout(() => {
         this.value === "Есть (комментарий)" ? "block" : "none";
     });
   }
-}, 100);
 
-function attachMutualExclusion(groupSelector, noneValue) {
-  const group = document.querySelector(groupSelector);
-  if (!group) return;
-
-  group.addEventListener("change", function (event) {
-    const changedInput = event.target;
-    if (!(changedInput instanceof HTMLInputElement)) return;
-
-    const allInputs = Array.from(group.querySelectorAll('input[type="checkbox"]'));
-    const noneInput = allInputs.find((input) => input.value === noneValue);
-    if (!noneInput) return;
-
-    if (changedInput === noneInput) {
-      if (changedInput.checked) {
-        allInputs.forEach((input) => {
-          if (input !== noneInput) input.checked = false;
-        });
-      }
-      return;
-    }
-
-    if (changedInput.checked && noneInput.checked) {
-      noneInput.checked = false;
-    }
-  });
-}
-
-setTimeout(() => {
   attachMutualExclusion('[data-none-value="не пью"]', "не пью");
   attachMutualExclusion('[data-none-value="нет предпочтений"]', "нет предпочтений");
-}, 100);
-
-// Отправка формы
-setTimeout(() => {
+  
+  // Форма
   const form = document.getElementById("rsvpForm");
   if (form) {
     form.addEventListener("submit", async function (e) {
@@ -248,9 +168,7 @@ setTimeout(() => {
       }
 
       try {
-        if (isPlaceholderScript) {
-          throw new Error("Endpoint not configured");
-        }
+        if (isPlaceholderScript) throw new Error("Endpoint not configured");
 
         await fetch(SCRIPT_URL, {
           method: "POST",
@@ -280,4 +198,31 @@ setTimeout(() => {
       }
     });
   }
-}, 100);
+}, 200);
+
+function attachMutualExclusion(groupSelector, noneValue) {
+  const group = document.querySelector(groupSelector);
+  if (!group) return;
+
+  group.addEventListener("change", function (event) {
+    const changedInput = event.target;
+    if (!(changedInput instanceof HTMLInputElement)) return;
+
+    const allInputs = Array.from(group.querySelectorAll('input[type="checkbox"]'));
+    const noneInput = allInputs.find((input) => input.value === noneValue);
+    if (!noneInput) return;
+
+    if (changedInput === noneInput) {
+      if (changedInput.checked) {
+        allInputs.forEach((input) => {
+          if (input !== noneInput) input.checked = false;
+        });
+      }
+      return;
+    }
+
+    if (changedInput.checked && noneInput.checked) {
+      noneInput.checked = false;
+    }
+  });
+}
