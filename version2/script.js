@@ -2,6 +2,14 @@ const SCRIPT_URL =
   window.SCRIPT_URL || "https://script.google.com/macros/s/AKfycbya-Bxo9KXIX4cJNML5YOokamkQ4hPPRS2V_GcfxWJvTcTfzlOLYd5qc_q5FYlPSqcI4g/exec";
 const isPlaceholderScript = SCRIPT_URL.includes("ВАШ_SCRIPT_ID");
 
+// Дефолтный гость — единственное, что остаётся на клиенте
+const defaultGuest = {
+  displayName: "наш дорогой гость",
+  greeting: "Дорогой гость",
+  formName: "Наш дорогой гость",
+  heroText: "Мы приглашаем вас разделить с нами этот особенный день.",
+};
+
 // Таймер
 const weddingDate = new Date("2026-10-01T15:00:00");
 function updateCountdown() {
@@ -30,253 +38,49 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// Персональное приветствие
+// Персональное приветствие — получаем с сервера
 const params = new URLSearchParams(window.location.search);
 const guestId = params.get("guest") || "";
 
-const guestEntries = [
-  {
-    aliases: [
-      "anna_evgeniy_vashchenko",
-      "anna-i-evgeniy-vashchenko",
-      "anna evgeniy vashchenko",
-      "анна и евгений ващенко",
-      "анна и евгений",
-    ],
-    displayName: "Анна и Евгений",
-    greeting: "Дорогие Анна и Евгений",
-    formName: "Анна и Евгений",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "polina_vashchenko",
-      "полина ващенко",
-      "полина",
-    ],
-    displayName: "Полина",
-    greeting: "Дорогая Полина",
-    formName: "Полина",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "tatyana_prohorova",
-      "татьяна прохорова",
-      "татьяна",
-    ],
-    displayName: "Татьяна",
-    greeting: "Дорогая Татьяна",
-    formName: "Татьяна",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "nadezhda_valentin_vashchenko",
-      "nadezhda-i-valentin-vashchenko",
-      "надежда и валентин ващенко",
-      "надежда и валентин",
-    ],
-    displayName: "Надежда и Валентин",
-    greeting: "Дорогие Надежда и Валентин",
-    formName: "Надежда и Валентин",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "elena_dmitriy_buntovy",
-      "елена и дмитрий бунтовы",
-      "елена и дмитрий",
-    ],
-    displayName: "Елена и Дмитрий",
-    greeting: "Дорогие Елена и Дмитрий",
-    formName: "Елена и Дмитрий",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "anna_buntova",
-      "анна бунтова",
-      "анна",
-    ],
-    displayName: "Анна",
-    greeting: "Дорогая Анна",
-    formName: "Анна",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "anton_buntov",
-      "антон бунтов",
-      "антон",
-    ],
-    displayName: "Антон",
-    greeting: "Дорогой Антон",
-    formName: "Антон",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "olga_dmitriy_elizaveta_zemlyanskie",
-      "ольга дмитрий и елизавета землянские",
-      "ольга и дмитрий и елизавета",
-    ],
-    displayName: "Ольга, Дмитрий и Елизавета",
-    greeting: "Дорогие Ольга, Дмитрий и Елизавета",
-    formName: "Ольга, Дмитрий и Елизавета",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "alexandra_aleksandr_revyakin",
-      "александра и александр ревякин",
-      "александра и александр",
-    ],
-    displayName: "Александра и Александр",
-    greeting: "Дорогие Александра и Александр",
-    formName: "Александра и Александр",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "ekaterina_gabovda",
-      "екатерина габовда",
-      "екатерина",
-    ],
-    displayName: "Екатерина",
-    greeting: "Дорогая Екатерина",
-    formName: "Екатерина",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "elena_geraskina",
-      "елена гераскина",
-      "елена",
-    ],
-    displayName: "Елена",
-    greeting: "Дорогая Елена",
-    formName: "Елена",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "pavel_geraskin",
-      "павел гераскин",
-      "павел",
-    ],
-    displayName: "Павел",
-    greeting: "Дорогой Павел",
-    formName: "Павел",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "taisa_ivashchenko",
-      "таиса иващенко",
-      "таиса",
-    ],
-    displayName: "Таиса",
-    greeting: "Дорогая Таиса",
-    formName: "Таиса",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "vadim_linnik",
-      "вадим линник",
-      "вадим",
-    ],
-    displayName: "Вадим",
-    greeting: "Дорогой Вадим",
-    formName: "Вадим",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "olga_dmitriy_linnik",
-      "ольга и дмитрий линник",
-      "ольга и дмитрий",
-    ],
-    displayName: "Ольга и Дмитрий",
-    greeting: "Дорогие Ольга и Дмитрий",
-    formName: "Ольга и Дмитрий",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "maksim_nataliya_dmitriy_geraskiny",
-      "максим наталья и дмитрий гераскины",
-      "максим наталья дмитрий",
-    ],
-    displayName: "Максим, Наталья и Дмитрий",
-    greeting: "Дорогие Максим, Наталья и Дмитрий",
-    formName: "Максим, Наталья и Дмитрий",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-  {
-    aliases: [
-      "eduard_aleksandrov",
-      "эдуард александров",
-      "эдуард",
-    ],
-    displayName: "Эдуард",
-    greeting: "Дорогой Эдуард",
-    formName: "Эдуард",
-    heroText: "Мы рады пригласить вас разделить с нами этот особенный день.",
-  },
-];
-
-const defaultGuest = {
-  displayName: "наш дорогой гость",
-  greeting: "Дорогой гость",
-  formName: "Наш дорогой гость",
-  heroText: "Мы приглашаем вас разделить с нами этот особенный день.",
-};
-
-function normalizeGuestValue(value) {
-  return (value || "")
-    .toString()
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-zа-яё0-9]+/g, " ")
-    .trim();
+async function getGuestData(guestId) {
+  if (!guestId) return defaultGuest;
+  
+  try {
+    const response = await fetch(`${SCRIPT_URL}?guest=${encodeURIComponent(guestId)}`);
+    const data = await response.json();
+    return (data.success && data.guest) ? data.guest : defaultGuest;
+  } catch (err) {
+    console.warn("Не удалось загрузить данные гостя, используется гость по умолчанию", err);
+    return defaultGuest;
+  }
 }
 
-function resolveGuest(rawGuest) {
-  const normalized = normalizeGuestValue(rawGuest);
-  if (!normalized) return defaultGuest;
+// Инициализация страницы
+async function initPage() {
+  const guestData = await getGuestData(guestId);
+  
+  const welcome = document.getElementById("guestWelcome");
+  if (welcome) welcome.textContent = guestData.greeting;
 
-  const directMatch = guestEntries.find((entry) =>
-    entry.aliases.some((alias) => normalizeGuestValue(alias) === normalized)
-  );
-  if (directMatch) return directMatch;
+  const heroInvitation = document.getElementById("heroInvitation");
+  if (heroInvitation) {
+    heroInvitation.textContent = guestData.heroText;
+  }
 
-  const byDisplayName = guestEntries.find(
-    (entry) => normalizeGuestValue(entry.displayName) === normalized
-  );
-  if (byDisplayName) return byDisplayName;
+  const guestNameInput = document.getElementById("guestNameInput");
+  if (guestNameInput) {
+    guestNameInput.value = guestData.formName;
+  }
 
-  return defaultGuest;
+  // Сохраняем данные гостя для формы
+  window._guestData = guestData;
 }
 
-const guestData = resolveGuest(guestId);
-const welcome = document.getElementById("guestWelcome");
-if (welcome) welcome.textContent = guestData.greeting;
-
-const guestGreeting = document.getElementById("guestGreeting");
-if (guestGreeting) {
-  guestGreeting.textContent = "";
-}
-
-const heroInvitation = document.getElementById("heroInvitation");
-if (heroInvitation) {
-  heroInvitation.textContent = guestData.heroText;
-}
-
-const guestNameInput = document.getElementById("guestNameInput");
-if (guestNameInput) {
-  guestNameInput.value = guestData.formName;
+// Ждём загрузки DOM
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initPage);
+} else {
+  initPage();
 }
 
 // Анимации для всех секций, кроме RSVP
@@ -365,6 +169,7 @@ if (form) {
     btn.disabled = true;
     btn.textContent = "Отправка...";
 
+    const guestData = window._guestData || defaultGuest;
     const data = new FormData(form);
     const payload = Object.fromEntries(data.entries());
     payload.guestId = guestId;
