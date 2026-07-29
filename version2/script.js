@@ -2,7 +2,6 @@ const SCRIPT_URL =
   window.SCRIPT_URL || "https://script.google.com/macros/s/AKfycbya-Bxo9KXIX4cJNML5YOokamkQ4hPPRS2V_GcfxWJvTcTfzlOLYd5qc_q5FYlPSqcI4g/exec";
 const isPlaceholderScript = SCRIPT_URL.includes("ВАШ_SCRIPT_ID");
 
-// Таймер
 const weddingDate = new Date("2026-10-01T15:00:00");
 function updateCountdown() {
   const now = new Date();
@@ -30,7 +29,6 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// Дефолтный гость
 const defaultGuest = {
   displayName: "Дорогой гость",
   greeting: "Дорогой гость",
@@ -38,7 +36,6 @@ const defaultGuest = {
   heroText: "Мы приглашаем вас разделить с нами этот особенный день.",
 };
 
-// Скрываем лоадер и показываем сайт
 function hideLoader() {
   const loader = document.getElementById("weddingLoader");
   if (loader) {
@@ -50,7 +47,6 @@ function hideLoader() {
   }
 }
 
-// Применяем данные гостя
 function applyGuestData(guestData) {
   const welcome = document.getElementById("guestWelcome");
   const heroInvitation = document.getElementById("heroInvitation");
@@ -61,7 +57,6 @@ function applyGuestData(guestData) {
   if (guestNameInput) guestNameInput.value = guestData.formName;
 }
 
-// Загружаем данные гостя
 const params = new URLSearchParams(window.location.search);
 const guestId = params.get("guest") || "";
 
@@ -92,7 +87,6 @@ async function loadGuestData() {
 
 loadGuestData();
 
-// Анимации
 setTimeout(() => {
   const sections = document.querySelectorAll(".section:not(.rsvp)");
   if (sections.length) {
@@ -110,7 +104,6 @@ setTimeout(() => {
   }
 }, 200);
 
-// Плавный скролл
 setTimeout(() => {
   const rsvpLink = document.getElementById("rsvpLink");
   if (rsvpLink) {
@@ -142,7 +135,6 @@ setTimeout(() => {
   attachMutualExclusion('[data-none-value="не пью"]', "не пью");
   attachMutualExclusion('[data-none-value="нет предпочтений"]', "нет предпочтений");
   
-  // Форма
   const form = document.getElementById("rsvpForm");
   if (form) {
     form.addEventListener("submit", async function (e) {

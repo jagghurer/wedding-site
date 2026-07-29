@@ -141,6 +141,24 @@ body.loading .page {
   z-index: 1;
   pointer-events: none;
 }
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  max-width: 620px;            
+  width: 90%;                  
+  text-align: center;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0 16px;             
+  white-space: normal;         
+  word-break: keep-all;        
+}
 .leaf {
   position: absolute;
   opacity: 0.8;
@@ -212,7 +230,7 @@ h2 {
   border-radius: 50px;
   font-size: 15px;
   letter-spacing: 1px;
-  font-weight: 500;
+  font-weight: 300;
   cursor: pointer;
   border: none;
   font-family: inherit;
@@ -236,7 +254,6 @@ h2 {
   color: white;
 }
 
-/* Счётчик */
 .countdown {
   background: var(--white);
   text-align: center;
@@ -268,7 +285,6 @@ h2 {
   margin-top: 4px;
 }
 
-/* Календарь */
 .calendar-section {
   background: #faf3f0;
   text-align: center;
@@ -308,7 +324,6 @@ h2 {
   margin: 0 auto;
 }
 
-/* Остальные секции */
 
 
 .details {
@@ -339,7 +354,7 @@ h2 {
 .detail-value {
   font-size: 18px;
   font-weight: 500;
-  white-space: nowrap; /* ← фикс: не переносить на две строки */
+  white-space: nowrap; 
 }
 .detail-address {
   color: var(--muted);
@@ -388,7 +403,6 @@ h2 {
   font-size: 14px;
 }
 
-/* Дресс-код */
 .dresscode {
   text-align: center;
   background: #faf9f6;
@@ -461,7 +475,6 @@ h2 {
   z-index: 10;
 }
 
-/* Пожелания */
 .gifts {
   text-align: center;
   background: var(--white);
@@ -473,7 +486,6 @@ h2 {
   margin: 0 auto;
 }
 
-/* Локация */
 .location {
   background: linear-gradient(180deg, #faf9f6 0%, #f5efe8 100%);
   text-align: center;
@@ -535,7 +547,6 @@ h2 {
   font-weight: 500;
 }
 
-/* RSVP */
 .rsvp {
   background: var(--white);
   text-align: center;
@@ -676,7 +687,6 @@ select {
   color: var(--sage);
 }
 
-/* Футер */
 footer {
   text-align: center;
   padding: 60px 20px;
@@ -701,7 +711,6 @@ footer small {
   margin-top: 6px;
 }
 
-/* ========== ПЛАНШЕТЫ (от 768px до 1024px) ========== */
 @media (min-width: 768px) and (max-width: 1024px) {
   .section {
     padding: 100px 0;
@@ -807,13 +816,12 @@ footer small {
   }
 }
 
-/* ========== ТЕЛЕФОНЫ (до 600px) — фикс «Второй дворец…» + масштаб ========== */
 @media (max-width: 600px) {
   .detail-value {
-    font-size: 15px;          /* чуть меньше, чтобы влезало */
-    white-space: nowrap;      /* ← гарантирует одну строку */
+    font-size: 15px;          
+    white-space: nowrap;      
     overflow: hidden;
-    text-overflow: ellipsis;  /* на всякий случай, если не влезет */
+    text-overflow: ellipsis;  
   }
 
   .detail {
@@ -826,7 +834,7 @@ footer small {
   }
 }
 
-/* ========== Адаптивность (базовая) ========== */
+
 @media (max-width: 768px) {
   .section {
     padding: 60px 0;
