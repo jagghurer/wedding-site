@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Редирект с корня на /wedding/
+RewriteRule ^$ /wedding/ [R=301,L]
