@@ -309,19 +309,7 @@ h2 {
 }
 
 /* Остальные секции */
-.story {
-  background: var(--white);
-  text-align: center;
-}
-.story-text {
-  max-width: 650px;
-  margin: 0 auto;
-  color: var(--muted);
-  font-size: 17px;
-}
-.story-text p {
-  margin-bottom: 20px;
-}
+
 
 .details {
   text-align: center;
@@ -715,7 +703,7 @@ footer small {
 /* Адаптивность */
 @media (max-width: 768px) {
   .section {
-    padding: 80px 0;
+    padding: 60px 0;
   }
   .location {
     padding: 80px 0 !important;
