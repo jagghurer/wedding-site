@@ -339,6 +339,7 @@ h2 {
 .detail-value {
   font-size: 18px;
   font-weight: 500;
+  white-space: nowrap; /* ← фикс: не переносить на две строки */
 }
 .detail-address {
   color: var(--muted);
@@ -700,7 +701,132 @@ footer small {
   margin-top: 6px;
 }
 
-/* Адаптивность */
+/* ========== ПЛАНШЕТЫ (от 768px до 1024px) ========== */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    padding: 100px 0;
+  }
+
+  .hero {
+    min-height: 75vh;
+  }
+
+  h1.names {
+    font-size: clamp(62px, 12vw, 90px);
+  }
+
+  .date {
+    font-size: 28px;
+  }
+
+  .guest-name {
+    font-size: 24px;
+  }
+
+  .hero-invite {
+    font-size: 18px;
+    max-width: 700px;
+  }
+
+  .btn {
+    padding: 18px 46px;
+    font-size: 17px;
+  }
+
+  .countdown-grid {
+    gap: 35px;
+  }
+
+  .count-item {
+    padding: 28px 35px;
+    min-width: 140px;
+  }
+
+  .count-item span {
+    font-size: 48px;
+  }
+
+  .count-item small {
+    font-size: 16px;
+  }
+
+  .details-grid {
+    gap: 50px;
+  }
+
+  .detail {
+    padding: 35px 40px;
+    min-width: 220px;
+  }
+
+  .detail-label {
+    font-size: 16px;
+  }
+
+  .detail-value {
+    font-size: 22px;
+  }
+
+  .detail-address {
+    font-size: 16px;
+  }
+
+  .tl-item {
+    padding: 28px 35px;
+    gap: 30px;
+  }
+
+  .time {
+    width: 90px;
+    height: 90px;
+    font-size: 28px;
+  }
+
+  .tl-item h3 {
+    font-size: 24px;
+  }
+
+  .tl-item p {
+    font-size: 16px;
+  }
+
+  .map-container {
+    height: 600px;
+  }
+
+  .rsvp-form {
+    max-width: 650px;
+    gap: 28px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 16px 22px;
+    font-size: 17px;
+  }
+}
+
+/* ========== ТЕЛЕФОНЫ (до 600px) — фикс «Второй дворец…» + масштаб ========== */
+@media (max-width: 600px) {
+  .detail-value {
+    font-size: 15px;          /* чуть меньше, чтобы влезало */
+    white-space: nowrap;      /* ← гарантирует одну строку */
+    overflow: hidden;
+    text-overflow: ellipsis;  /* на всякий случай, если не влезет */
+  }
+
+  .detail {
+    min-width: 0;
+    padding: 20px 18px;
+  }
+
+  .details-grid {
+    gap: 20px;
+  }
+}
+
+/* ========== Адаптивность (базовая) ========== */
 @media (max-width: 768px) {
   .section {
     padding: 60px 0;
